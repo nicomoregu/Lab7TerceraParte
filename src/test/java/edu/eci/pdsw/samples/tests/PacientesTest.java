@@ -19,6 +19,12 @@ package edu.eci.pdsw.samples.tests;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import edu.eci.pdsw.samples.entities.Paciente;
+import edu.eci.pdsw.samples.services.ExcepcionServiciosPacientes;
+import edu.eci.pdsw.samples.services.ServiciosPacientes;
+import edu.eci.pdsw.samples.services.ServiciosPacientesStub;
+import java.sql.Date;
+import junit.framework.Assert;
 
 /**
  *
@@ -28,13 +34,27 @@ public class PacientesTest {
     
     public PacientesTest() {
     }
-    
-    @Before
-    public void setUp() {
-    }
-    
+    /**
+     * Paciente no registrado debe ingresar
+     * Paciente registrado no debe ingresar.
+     */    
     @Test
     public void registroPacienteTest(){
+        Paciente p = new Paciente(100, "CC", "Jairo", null);
+        ServiciosPacientes sp = new ServiciosPacientesStub();
+        try {
+            sp.registrarNuevoPaciente(p);
+        } catch (ExcepcionServiciosPacientes e) {
+            Assert.fail("Fallo registrando un paciente que si debia registrarlo");
+        }
+        
+        try {
+            sp.registrarNuevoPaciente(p);
+            Assert.assertTrue("Fallo por que no debia registrar un paciente que ya esta registrado", false);
+        } catch (Exception e) {
+            
+        }
+
         
     }
     
