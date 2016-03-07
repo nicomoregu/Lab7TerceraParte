@@ -16,6 +16,8 @@
  */
 package edu.eci.pdsw.samples.tests;
 
+import edu.eci.pdsw.samples.entities.Paciente;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -26,6 +28,7 @@ import static org.junit.Assert.*;
  */
 public class ConsultasTest {
     
+    
     public ConsultasTest() {
     }
     
@@ -33,8 +36,16 @@ public class ConsultasTest {
     public void setUp() {
     }
     
+    /**
+     * Clases de Equivalencia:
+     * -Paciente no existe
+     * -
+     */
     @Test
     public void registroPacienteTest(){
+        
+        //Paciente p = new Paciente(1234,"C.C","Pepito Perez",1994,07,09);
+        
         
     }
     
