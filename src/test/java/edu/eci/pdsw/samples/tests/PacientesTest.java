@@ -52,7 +52,7 @@ public class PacientesTest {
             sp.registrarNuevoPaciente(p);
             Assert.assertTrue("Fallo por que no debia registrar un paciente que ya esta registrado", false);
         } catch (Exception e) {
-            
+            Assert.assertTrue(true);
         }
 
         

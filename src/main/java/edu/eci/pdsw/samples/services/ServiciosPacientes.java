@@ -32,7 +32,11 @@ public abstract class ServiciosPacientes {
     protected ServiciosPacientes(){        
 
     }
-    
+    /**
+     * 
+     * @return Instancia de ServiciosPacientes
+     * @throws RuntimeException 
+     */
     public static ServiciosPacientes getInstance() throws RuntimeException{        
         return instance;
     }
@@ -50,8 +54,7 @@ public abstract class ServiciosPacientes {
     /**
      * Registra un nuevo PACIENTE en el sistema
      * @param p El nuevo paciente
-     * @throws Exception si se presenta algún error lógico
-     * o de persistencia (por ejemplo, si el paciente ya existe).
+     * @throws ExcepcionServiciosPacientes Si el paciente ya existe.
      */
     public abstract void registrarNuevoPaciente(Paciente p) throws ExcepcionServiciosPacientes;
     
