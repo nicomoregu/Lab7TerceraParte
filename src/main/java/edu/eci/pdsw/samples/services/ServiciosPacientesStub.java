@@ -20,6 +20,7 @@ import edu.eci.pdsw.samples.entities.Consulta;
 import edu.eci.pdsw.samples.entities.Paciente;
 import java.sql.Date;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -54,6 +55,12 @@ public class ServiciosPacientesStub extends ServiciosPacientes{
 
     @Override
     public void registrarNuevoPaciente(Paciente p) throws ExcepcionServiciosPacientes {
+        Iterator iterador = pacientes.entrySet().iterator();
+        for(Tupla key:pacientes.keySet()){
+            if(key.equals(new Tupla<>(p.getId(),p.getTipo_id()))){
+                throw new ExcepcionServiciosPacientes("Paciente "+p.getId()+" ya esta registrado");
+            }
+        }
         pacientes.put(new Tupla<>(p.getId(),p.getTipo_id()), p);
     }
 
