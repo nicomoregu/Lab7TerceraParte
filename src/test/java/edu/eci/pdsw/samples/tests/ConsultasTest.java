@@ -16,7 +16,11 @@
  */
 package edu.eci.pdsw.samples.tests;
 
+import edu.eci.pdsw.samples.entities.Consulta;
 import edu.eci.pdsw.samples.entities.Paciente;
+import edu.eci.pdsw.samples.services.ExcepcionServiciosPacientes;
+import edu.eci.pdsw.samples.services.ServiciosPacientes;
+import edu.eci.pdsw.samples.services.ServiciosPacientesStub;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,13 +43,32 @@ public class ConsultasTest {
     /**
      * Clases de Equivalencia:
      * -Paciente no existe
-     * -
+     * -Paciente Existe
      */
     @Test
     public void registroPacienteTest(){
-        
-        //Paciente p = new Paciente(1234,"C.C","Pepito Perez",1994,07,09);
-        
+        ServiciosPacientes sp = new ServiciosPacientesStub();
+        Consulta consul1 = new Consulta(null,"primera consulta paciente");
+        Paciente p = new Paciente(1234,"CC","Pepito Perez",null);
+        try{
+            sp.agregarConsultaAPaciente(123, "dermatologia", consul1);
+        }
+        catch (ExcepcionServiciosPacientes e){
+            Assert.fail("Fallo agregando una consulta a un paciente que no existe");
+        }
+        try{
+            sp.agregarConsultaAPaciente(1234, "dermatologia", consul1);
+        }
+        catch (ExcepcionServiciosPacientes e){
+            Assert.fail("Fallo agregando una consulta a un paciente que no existe");
+        }
+        try{
+            
+            sp.agregarConsultaAPaciente(1234, "dermatologia", consul1);
+        }
+        catch (ExcepcionServiciosPacientes e){
+            Assert.fail("Fallo porque el paciente ya tiene la consulta");
+        }
         
     }
     
