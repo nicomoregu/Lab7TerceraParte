@@ -6,25 +6,25 @@
 
     <h:body>
         <h:form id="registro">
-            <p:dataTable id ="tabla" name ="Citas" width="80%" var="consultas" value="#{RegistroConsultaBean}">
+            <p:dataTable id ="tabla" var="consultas" value="#{beanRegistroConsulta}">
                 <p:column headerText="Fecha y hora">
-                    <h:outputText name="fechahora" value="#{consultas.fechaYHora}"/>
+                    <h:outputText id ="fechahora" value="#{consultas.fechaYHora}"/>
                 </p:column>
                 <p:column headerText="Resumen">
-                    <h:outputText name="resumen" value="#{consultas.resumen}"/>
+                    <h:outputText id ="resumen" value="#{consultas.resumen}"/>
                 </p:column>
                 <p:column headerText="ID">
-                    <h:outputText name="ID" value="#{consultas.id}"/>
+                    <h:outputText id ="ID" value="#{consultas.id}"/>
                 </p:column>
             </p:dataTable>
             <br/>
             <h:panelGrid columns="1" cellpadding="10">
                 <p:outputLabel  value="Ingresar nueva consulta" styleClass="capitalized"/>
                 <p:outputLabel  value="Ingresar resumen" />
-                <p:inputText name="Ingresar Resumen" type="String" value="#{RegistroConsultaBean.resumenConsul}"/>  
+                <p:inputText id ="Ingresar Resumen" type="String" value="#{beanRegistroConsulta.resumenConsul}"/>  
                 <p:outputLabel  value="ingresar fecha" />
-                <p:calendar id="datetime" value="#{RegistroConsultaBean.fechaConsul}" pattern="MM/dd/yyyy HH:mm:ss" />
-                <p:commandButton value="Submit" update ="registro" actionListener="#{RegistroConsultaBean.agregarConsulta}" icon="ui-icon-check" />
+                <p:calendar id="datetime" value="#{beanRegistroConsulta.fechaConsul}" pattern="MM/dd/yyyy HH:mm:ss" />
+                <p:commandButton value="Submit" update ="registro" actionListener="#{beanRegistroConsulta.agregarConsulta}" icon="ui-icon-check" />
             </h:panelGrid>  
         </h:form>
     </h:body>

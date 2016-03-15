@@ -26,28 +26,29 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
-import javax.annotation.ManagedBean;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author hcadavid
  */
-@ManagedBean
+@ManagedBean(name="beanRegistroConsulta")
 @SessionScoped
+
 public class RegistroConsultaBean implements Serializable{
     
     private ServiciosPacientes sp=ServiciosPacientes.getInstance();
     private Paciente pacienteConsulta = new Paciente(123, "CC", "Juan Perez", java.sql.Date.valueOf("2000-01-01"));
     private String nombrePaciente="";
-    private int id=0;
+    private int id = 0;
     private String tipoId="";
-    private Date fechaPaciente=null;
+    private Date fechaPaciente= null;
     private String resumenConsul="";
     private List<Consulta> consultasPaciente = new ArrayList<>();
-    private Date fechaConsul=null;
+    private Date fechaConsul= null;
     
-    public void agragarPaciente()throws ExcepcionServiciosPacientes{
+    public void agregarPaciente()throws ExcepcionServiciosPacientes{
         try{
             Paciente paciente1 = new Paciente(id,tipoId,nombrePaciente,fechaPaciente);
             sp.registrarNuevoPaciente(paciente1);  
@@ -110,6 +111,7 @@ public class RegistroConsultaBean implements Serializable{
     }
 
     public void setId(int id) {
+        System.out.println(id);
         this.id = id;
     }
 

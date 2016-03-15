@@ -6,15 +6,16 @@
 
     <h:body>
         <h:form id="registro">
-            <p:dataTable id ="tabla" name ="Citas" width="80%" var="registro" value="#{RegistroConsultaBean}">
+            <p:dataTable id ="tabla" >
+                
                 <p:column headerText="Fecha y hora">
-                    <h:outputText name="fechahora" value="#{registro.fechaYHora}"/>
+                    <h:outputText id ="fechahora" value="#{beanRegistroConsulta.fechaConsul}"/>
                 </p:column>
                 <p:column headerText="Resumen">
-                    <h:outputText name="resumen" value="#{registro.resumen}"/>
+                    <h:outputText id ="resumen" value="#{beanRegistroConsulta.resumenConsul}"/>
                 </p:column>
                 <p:column headerText="ID">
-                    <h:outputText name="ID" value="#{registro.id}"/>
+                    <h:outputText id="ID" value="#{beanRegistroConsulta.id}"/>
                 </p:column>
             </p:dataTable>
             <br/>
@@ -23,10 +24,10 @@
                 
                 <p:outputLabel  value="Ingresar nuevo paciente" styleClass="capitalized"/>
                 <p:outputLabel  value="ID" />
-                <p:inputText name="Ingresar ID" type="int" value="#{registro.setId}"/> 
+                <p:inputText id="esto"  type="int" value="#{beanRegistroConsulta.id}"/> 
                 
                 <p:outputLabel value="Tipo ID" />
-                <p:selectOneMenu id="console" value="#{registro.getTipoId}" style="width:250px">
+                <p:selectOneMenu id="console" value="#{beanRegistroConsulta.tipoId}" style="width:250px">
                     <f:selectItem itemLabel="Seleccione uno" itemValue="" />
                     <f:selectItem itemLabel="Cedula de Ciudadania" itemValue="C.C" />
                     <f:selectItem itemLabel="Targeta de Identidad" itemValue="T.I" />
@@ -35,11 +36,11 @@
                 </p:selectOneMenu>
                 
                 <p:outputLabel  value="Nombre" />
-                <p:inputText name="Ingresar Nombre" type="String" value="#{registro.setNombrePaciente}"/>                 
+                <p:inputText id="nombre" type="String" value="#{beanRegistroConsulta.nombrePaciente}"/>                 
                 
                 <p:outputLabel  value="Fecha de Nacimiento" />
-                <p:calendar id="datetime" locale="de" navigator="true" value="#{registro.setFechaPaciente}" pattern="MM/dd/yyyy" />
-                <p:commandButton value="Submit" update ="registro" actionListener="#{registro.agragarPaciente}" icon="ui-icon-check" />
+                <p:calendar id="datetime" locale="de" navigator="true"  pattern="MM/dd/yyyy"  value="#{beanRegistroConsulta.fechaPaciente}" />
+                <p:commandButton value="Submit" update ="registro" actionListener="#{beanRegistroConsulta.agregarPaciente()}" icon="ui-icon-check" />
             </h:panelGrid>  
         </h:form>
     </h:body>
