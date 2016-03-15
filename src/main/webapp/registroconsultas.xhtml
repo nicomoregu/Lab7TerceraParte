@@ -6,7 +6,7 @@
 
     <h:body>
         <h:form id="registro">
-            <p:dataTable id ="tabla" name ="Citas" width="80%" var="consultas" value="#{RegistroConsultaBean.ConsultaPaciente}">
+            <p:dataTable id ="tabla" name ="Citas" width="80%" var="consultas" value="#{RegistroConsultaBean}">
                 <p:column headerText="Fecha y hora">
                     <h:outputText name="fechahora" value="#{consultas.fechaYHora}"/>
                 </p:column>

@@ -1,11 +1,47 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3c.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head>
 
     <h:body>
-        
+        <h:form id="registro">
+            <p:dataTable id ="tabla" name ="Citas" width="80%" var="registro" value="#{RegistroConsultaBean}">
+                <p:column headerText="Fecha y hora">
+                    <h:outputText name="fechahora" value="#{registro.fechaYHora}"/>
+                </p:column>
+                <p:column headerText="Resumen">
+                    <h:outputText name="resumen" value="#{registro.resumen}"/>
+                </p:column>
+                <p:column headerText="ID">
+                    <h:outputText name="ID" value="#{registro.id}"/>
+                </p:column>
+            </p:dataTable>
+            <br/>
+            
+            <h:panelGrid columns="1" cellpadding="10">
+                
+                <p:outputLabel  value="Ingresar nuevo paciente" styleClass="capitalized"/>
+                <p:outputLabel  value="ID" />
+                <p:inputText name="Ingresar ID" type="int" value="#{registro.setId}"/> 
+                
+                <p:outputLabel value="Tipo ID" />
+                <p:selectOneMenu id="console" value="#{registro.getTipoId}" style="width:250px">
+                    <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                    <f:selectItem itemLabel="Cedula de Ciudadania" itemValue="C.C" />
+                    <f:selectItem itemLabel="Targeta de Identidad" itemValue="T.I" />
+                    <f:selectItem itemLabel="Cedula de Extrangeria" itemValue="C.E" />
+                    <f:selectItem itemLabel="NUIT" itemValue="NUIT" />
+                </p:selectOneMenu>
+                
+                <p:outputLabel  value="Nombre" />
+                <p:inputText name="Ingresar Nombre" type="String" value="#{registro.setNombrePaciente}"/>                 
+                
+                <p:outputLabel  value="Fecha de Nacimiento" />
+                <p:calendar id="datetime" locale="de" navigator="true" value="#{registro.setFechaPaciente}" pattern="MM/dd/yyyy" />
+                <p:commandButton value="Submit" update ="registro" actionListener="#{registro.agragarPaciente}" icon="ui-icon-check" />
+            </h:panelGrid>  
+        </h:form>
     </h:body>
 
 </html>

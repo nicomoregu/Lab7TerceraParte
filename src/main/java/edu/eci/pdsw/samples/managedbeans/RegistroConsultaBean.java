@@ -47,6 +47,16 @@ public class RegistroConsultaBean implements Serializable{
     private List<Consulta> consultasPaciente = new ArrayList<>();
     private Date fechaConsul=null;
     
+    public void agragarPaciente()throws ExcepcionServiciosPacientes{
+        try{
+            Paciente paciente1 = new Paciente(id,tipoId,nombrePaciente,fechaPaciente);
+            sp.registrarNuevoPaciente(paciente1);  
+        }
+        catch(ExcepcionServiciosPacientes e){
+            
+        }
+    }
+    
     public void agregarConsulta() throws ExcepcionServiciosPacientes{
         try{
             sp.agregarConsultaAPaciente(id, tipoId, new Consulta(fechaConsul, resumenConsul));
@@ -56,6 +66,7 @@ public class RegistroConsultaBean implements Serializable{
         }
         this.getConsultasPaciente();
     }
+    
     
     public Date getFechaConsul() {
         return fechaConsul;
