@@ -24,7 +24,7 @@ import java.io.Serializable;
  *
  * @author hcadavid
  */
-public abstract class ServiciosPacientes implements Serializable{
+public abstract class ServiciosPacientes{
     
     
     private static ServiciosPacientes instance=new ServiciosPacientesStub();

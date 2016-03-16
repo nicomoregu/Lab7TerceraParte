@@ -17,13 +17,13 @@
 package edu.eci.pdsw.samples.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
  * @author hcadavid
  */
-public class Consulta implements Serializable {
+public class Consulta {
     //el identificador es asignado por la base de datos,
     //por eso no se incluye en el constructor.
     private int id;

@@ -21,7 +21,7 @@ import edu.eci.pdsw.samples.entities.Paciente;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosPacientes;
 import edu.eci.pdsw.samples.services.ServiciosPacientes;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -36,7 +36,7 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name="beanRegistroConsulta")
 @SessionScoped
 
-public class RegistroConsultaBean implements Serializable{
+public class RegistroConsultaBean{
     
     private ServiciosPacientes sp=ServiciosPacientes.getInstance();
     private Paciente pacienteConsulta = new Paciente(123, "CC", "Juan Perez", java.sql.Date.valueOf("2000-01-01"));
@@ -52,9 +52,10 @@ public class RegistroConsultaBean implements Serializable{
         try{
             Paciente paciente1 = new Paciente(id,tipoId,nombrePaciente,fechaPaciente);
             sp.registrarNuevoPaciente(paciente1);  
+            System.out.println("agrego paciente");
         }
         catch(ExcepcionServiciosPacientes e){
-            
+            System.out.println("no pudo agregar al cliente");
         }
     }
     
@@ -103,6 +104,7 @@ public class RegistroConsultaBean implements Serializable{
     }
 
     public void setNombrePaciente(String nombrePaciente) {
+        System.out.println("nombre "+nombrePaciente);
         this.nombrePaciente = nombrePaciente;
     }
 
@@ -111,7 +113,7 @@ public class RegistroConsultaBean implements Serializable{
     }
 
     public void setId(int id) {
-        System.out.println(id);
+        System.out.println("id paciente "+id);
         this.id = id;
     }
 
@@ -120,6 +122,7 @@ public class RegistroConsultaBean implements Serializable{
     }
 
     public void setTipoId(String tipoId) {
+        System.out.println("Tipo id "+tipoId);
         this.tipoId = tipoId;
     }
 
@@ -128,6 +131,7 @@ public class RegistroConsultaBean implements Serializable{
     }
 
     public void setFechaPaciente(Date fechaPaciente) {
+        System.out.println("fecha naciemiento  "+fechaPaciente);
         this.fechaPaciente = fechaPaciente;
     }
 

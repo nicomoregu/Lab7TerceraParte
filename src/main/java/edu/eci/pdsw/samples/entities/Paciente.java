@@ -17,7 +17,7 @@
 package edu.eci.pdsw.samples.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -25,7 +25,7 @@ import java.util.Set;
  *
  * @author hcadavid
  */
-public class Paciente implements Serializable{
+public class Paciente{
     
     private int id;
     private String tipo_id;
@@ -59,6 +59,7 @@ public class Paciente implements Serializable{
     }
 
     public void setTipo_id(String tipo_id) {
+        System.out.println("Tipo ID "+tipo_id);
         this.tipo_id = tipo_id;
     }
 

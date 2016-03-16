@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3c.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head>
 
     <h:body>
         <h:form id="registro">
-            <p:dataTable id ="tabla" var="consultas" value="#{beanRegistroConsulta}">
+            <p:dataTable id ="tabla">
                 <p:column headerText="Fecha y hora">
-                    <h:outputText id ="fechahora" value="#{consultas.fechaYHora}"/>
+                    <h:outputText id ="fechahora" value= "#{beanRegistroConsulta.fechaConsul}"/>
                 </p:column>
                 <p:column headerText="Resumen">
-                    <h:outputText id ="resumen" value="#{consultas.resumen}"/>
+                    <h:outputText id ="resumen" value="#{beanRegistroConsulta.getResumenConsul}"/>
                 </p:column>
                 <p:column headerText="ID">
-                    <h:outputText id ="ID" value="#{consultas.id}"/>
+                    <h:outputText id ="ID" value="#{beanRegistroConsulta.getId}"/>
                 </p:column>
             </p:dataTable>
             <br/>
             <h:panelGrid columns="1" cellpadding="10">
                 <p:outputLabel  value="Ingresar nueva consulta" styleClass="capitalized"/>
-                <p:outputLabel  value="Ingresar resumen" />
-                <p:inputText id ="Ingresar Resumen" type="String" value="#{beanRegistroConsulta.resumenConsul}"/>  
+                <p:outputLabel  value="Ingresar resumen"/>
+                <p:inputText id ="IngresarResumen" type="String" value="#{beanRegistroConsulta.resumenConsul}"/>  
                 <p:outputLabel  value="ingresar fecha" />
-                <p:calendar id="datetime" value="#{beanRegistroConsulta.fechaConsul}" pattern="MM/dd/yyyy HH:mm:ss" />
+                <p:calendar id="dateid" locale="de" navigator="true" pattern="dd-MM-yyyy HH:mm:ss" mask="true"  value="#{beanRegistroConsulta.fechaConsul}"/>
                 <p:commandButton value="Submit" update ="registro" actionListener="#{beanRegistroConsulta.agregarConsulta}" icon="ui-icon-check" />
             </h:panelGrid>  
         </h:form>
