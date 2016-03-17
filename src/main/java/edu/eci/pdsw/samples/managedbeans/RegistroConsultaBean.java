@@ -79,7 +79,7 @@ public class RegistroConsultaBean{
     
     public void agregarConsulta() throws ExcepcionServiciosPacientes{
         try{
-            sp.agregarConsultaAPaciente(pacienteConsulta.getId(), pacienteConsulta.getTipo_id(), new Consulta(fechaConsul, resumenConsul));
+            sp.agregarConsultaAPaciente(pacienteConsulta.getId(), pacienteConsulta.getTipo_id(), new Consulta((java.sql.Date) fechaConsul, resumenConsul));
         }catch (EnumConstantNotPresentException e){
             
         }

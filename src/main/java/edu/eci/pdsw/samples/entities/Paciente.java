@@ -19,13 +19,14 @@ package edu.eci.pdsw.samples.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  *
  * @author hcadavid
  */
-public class Paciente{
+public class Paciente {
     
     private int id;
     private String tipo_id;
@@ -59,7 +60,6 @@ public class Paciente{
     }
 
     public void setTipo_id(String tipo_id) {
-        System.out.println("Tipo ID "+tipo_id);
         this.tipo_id = tipo_id;
     }
 
@@ -77,6 +77,39 @@ public class Paciente{
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Paciente other = (Paciente) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.tipo_id, other.tipo_id)) {
+            return false;
+        }
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.fechaNacimiento, other.fechaNacimiento)) {
+            return false;
+        }
+        return true;
     }
 
     public Set<Consulta> getConsultas() {
