@@ -19,6 +19,7 @@ package edu.eci.pdsw.samples.services;
 import edu.eci.pdsw.samples.entities.Consulta;
 import edu.eci.pdsw.samples.entities.Paciente;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -67,5 +68,7 @@ public abstract class ServiciosPacientes{
      * @throws ExcepcionServiciosPacientes si se presenta algún error de persistencia o si el paciente no existe.
      */
     public abstract void agregarConsultaAPaciente(int idPaciente,String tipoid,Consulta c) throws ExcepcionServiciosPacientes;
+    
+    public abstract List<Paciente> getPacientes();
     
 }

@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3c.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head>
 
     <h:body>
-        <h:form id="registro">
-            <p:dataTable id ="tabla" >
-                
-                <p:column headerText="Fecha y hora">
-                    <h:outputText id ="fechahora" value="#{beanRegistroConsulta.fechaConsul}"/>
-                </p:column>
-                <p:column headerText="Resumen">
-                    <h:outputText id ="resumen" value="#{beanRegistroConsulta.resumenConsul}"/>
-                </p:column>
+        <h:form id="pacientes">
+            <p:dataTable id ="tabla" var="paciente" value ="#{beanRegistroConsulta.pacientes}" >
                 <p:column headerText="ID">
-                    <h:outputText id="ID" value="#{beanRegistroConsulta.id}"/>
+                    <h:outputText id ="id" value="#{paciente.id}"/>
+                </p:column>
+                <p:column headerText="Nombre">
+                    <h:outputText id ="resumen" value="#{paciente.nombre}"/>
+                </p:column>
+                <p:column headerText="Tipo ID">
+                    <h:outputText id="ID" value="#{paciente.tipo_id}"/>
+                </p:column>
+                <p:column headerText="Ver Consultas">
+                    <p:commandButton action="registroconsultas" >
+                        <f:setPropertyActionListener value="#{paciente}" target ="#{beanRegistroConsulta.pacienteConsulta}"/>
+                    </p:commandButton>
                 </p:column>
             </p:dataTable>
             <br/>
@@ -40,7 +45,7 @@
                 
                 <p:outputLabel  value="Fecha de Nacimiento" />
                 <p:calendar id="dateid" locale="de" navigator="true" pattern="dd-MM-yyyy" mask="true"   value="#{beanRegistroConsulta.fechaPaciente}" />
-                <p:commandButton value="Submit" update ="registro" actionListener="#{beanRegistroConsulta.agregarPaciente()}" />
+                <p:commandButton value="Submit" update ="pacientes" actionListener="#{beanRegistroConsulta.agregarPaciente()}" />
             </h:panelGrid>  
         </h:form>
     </h:body>

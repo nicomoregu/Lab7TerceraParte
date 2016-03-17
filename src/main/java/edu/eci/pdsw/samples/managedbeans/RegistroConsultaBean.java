@@ -23,8 +23,10 @@ import edu.eci.pdsw.samples.services.ServiciosPacientes;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -39,34 +41,48 @@ import javax.faces.bean.SessionScoped;
 public class RegistroConsultaBean{
     
     private ServiciosPacientes sp=ServiciosPacientes.getInstance();
-    private Paciente pacienteConsulta = new Paciente(123, "CC", "Juan Perez", java.sql.Date.valueOf("2000-01-01"));
+    private Paciente pacienteConsulta;
     private String nombrePaciente="";
     private int id = 0;
     private String tipoId="";
     private Date fechaPaciente= null;
     private String resumenConsul="";
     private List<Consulta> consultasPaciente = new ArrayList<>();
+    private List<Paciente> pacientes = sp.getPacientes();
+    
+    public void setPacienteConsulta(Paciente p){
+        pacienteConsulta=p;
+    }
+    
+    public Paciente getPacienteConsulta(){
+        return pacienteConsulta;
+    }
+    
+    public List<Paciente> getPacientes() {
+        pacientes=sp.getPacientes();
+        return pacientes;
+    }
+
+    public void setPacientes(List<Paciente> pacientes) {
+        this.pacientes = pacientes;
+    }
     private Date fechaConsul= null;
     
     public void agregarPaciente()throws ExcepcionServiciosPacientes{
         try{
             Paciente paciente1 = new Paciente(id,tipoId,nombrePaciente,fechaPaciente);
-            sp.registrarNuevoPaciente(paciente1);  
-            System.out.println("agrego paciente");
+            sp.registrarNuevoPaciente(paciente1);
         }
         catch(ExcepcionServiciosPacientes e){
-            System.out.println("no pudo agregar al cliente");
         }
     }
     
     public void agregarConsulta() throws ExcepcionServiciosPacientes{
         try{
-            sp.agregarConsultaAPaciente(id, tipoId, new Consulta(fechaConsul, resumenConsul));
-            System.out.println("agrego consulta");
+            sp.agregarConsultaAPaciente(pacienteConsulta.getId(), pacienteConsulta.getTipo_id(), new Consulta(fechaConsul, resumenConsul));
         }catch (EnumConstantNotPresentException e){
             
         }
-        this.getConsultasPaciente();
     }
     
     
@@ -79,10 +95,9 @@ public class RegistroConsultaBean{
     }
 
     public List<Consulta> getConsultasPaciente() {
-        Iterator iterador = pacienteConsulta.getConsultas().iterator();
         consultasPaciente.clear();
-        while(iterador.hasNext()){
-            consultasPaciente.add((Consulta)iterador.next());
+        for (Consulta consulta : pacienteConsulta.getConsultas()) {
+            consultasPaciente.add(consulta);
         }
         return consultasPaciente;
     }
@@ -91,20 +106,11 @@ public class RegistroConsultaBean{
         this.consultasPaciente = consultasPaciente;
     }
 
-    public ServiciosPacientes getSp() {
-        return sp;
-    }
-
-    public void setSp(ServiciosPacientes sp) {
-        this.sp = sp;
-    }
-
     public String getNombrePaciente() {
         return nombrePaciente;
     }
 
     public void setNombrePaciente(String nombrePaciente) {
-        System.out.println("nombre "+nombrePaciente);
         this.nombrePaciente = nombrePaciente;
     }
 
@@ -112,8 +118,7 @@ public class RegistroConsultaBean{
         return id;
     }
 
-    public void setId(int id) {
-        System.out.println("id paciente "+id);
+    public void setId(int id) {;
         this.id = id;
     }
 
@@ -122,7 +127,6 @@ public class RegistroConsultaBean{
     }
 
     public void setTipoId(String tipoId) {
-        System.out.println("Tipo id "+tipoId);
         this.tipoId = tipoId;
     }
 
@@ -131,7 +135,6 @@ public class RegistroConsultaBean{
     }
 
     public void setFechaPaciente(Date fechaPaciente) {
-        System.out.println("fecha naciemiento  "+fechaPaciente);
         this.fechaPaciente = fechaPaciente;
     }
 
@@ -148,9 +151,6 @@ public class RegistroConsultaBean{
      *
      * @return the value of string
      */
-    public Paciente getPacienteConsulta() {
-        return pacienteConsulta;
-    }
 
     /**
      * Set the value of string

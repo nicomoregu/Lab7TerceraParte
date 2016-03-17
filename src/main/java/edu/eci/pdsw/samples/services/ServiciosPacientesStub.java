@@ -16,12 +16,15 @@
  */
 package edu.eci.pdsw.samples.services;
 
+
 import edu.eci.pdsw.samples.entities.Consulta;
 import edu.eci.pdsw.samples.entities.Paciente;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -34,7 +37,7 @@ import java.util.logging.Logger;
 public class ServiciosPacientesStub extends ServiciosPacientes{
 
     private final Map<Tupla<Integer,String>,Paciente> pacientes;
-
+    private ArrayList<Paciente> listaPacientes = new ArrayList<>();
     public ServiciosPacientesStub() {
         this.pacientes = new LinkedHashMap<>();
         cargarDatosEstaticos(pacientes);
@@ -62,6 +65,7 @@ public class ServiciosPacientesStub extends ServiciosPacientes{
             }
         }
         pacientes.put(new Tupla<>(p.getId(),p.getTipo_id()), p);
+        listaPacientes.add(p);
     }
 
     @Override
@@ -75,10 +79,15 @@ public class ServiciosPacientesStub extends ServiciosPacientes{
         }
     }
     
+    @Override
+    public List<Paciente> getPacientes(){
+        return listaPacientes; 
+    }
 
     private void cargarDatosEstaticos(Map<Tupla<Integer,String>,Paciente> pacientes){        
         try {
             registrarNuevoPaciente(new Paciente(123, "CC", "Juan Perez", java.sql.Date.valueOf("2000-01-01")));
+            agregarConsultaAPaciente(123, "CC", new Consulta(java.sql.Date.valueOf("2000-02-03"), "Prueba"));
             registrarNuevoPaciente(new Paciente(321, "CC", "Maria Rodriguez", java.sql.Date.valueOf("2000-01-01")));
             registrarNuevoPaciente(new Paciente(875, "CC", "Pedro Martinez", java.sql.Date.valueOf("1956-05-01")));
             

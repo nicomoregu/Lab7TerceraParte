@@ -5,16 +5,16 @@
     <h:head></h:head>
 
     <h:body>
-        <h:form id="registro">
-            <p:dataTable id ="tabla">
-                <p:column headerText="Fecha y hora">
-                    <h:outputText id ="fechahora" value= "#{beanRegistroConsulta.fechaConsul}"/>
+        <h:form id="registro" >
+            <p:dataTable id ="tabla" var="consulta" value ="#{beanRegistroConsulta.consultasPaciente}">
+                <p:column headerText="ID">
+                    <h:outputText id ="ID" value="#{consulta.id}"/>
                 </p:column>
                 <p:column headerText="Resumen">
-                    <h:outputText id ="resumen" value="#{beanRegistroConsulta.getResumenConsul}"/>
+                    <h:outputText id ="fechahora" value= "#{consulta.resumen}"/>
                 </p:column>
-                <p:column headerText="ID">
-                    <h:outputText id ="ID" value="#{beanRegistroConsulta.getId}"/>
+                <p:column headerText="Fecha y Hora">
+                    <h:outputText id ="fecha" value="#{consulta.fechayHora}"/>
                 </p:column>
             </p:dataTable>
             <br/>
@@ -24,7 +24,7 @@
                 <p:inputText id ="IngresarResumen" type="String" value="#{beanRegistroConsulta.resumenConsul}"/>  
                 <p:outputLabel  value="ingresar fecha" />
                 <p:calendar id="dateid" locale="de" navigator="true" pattern="dd-MM-yyyy HH:mm:ss" mask="true"  value="#{beanRegistroConsulta.fechaConsul}"/>
-                <p:commandButton value="Submit" update ="registro" actionListener="#{beanRegistroConsulta.agregarConsulta}" icon="ui-icon-check" />
+                <p:commandButton value = "Sumit" update ="registro" actionListener="#{beanRegistroConsulta.agregarConsulta}" icon="ui-icon-check" />
             </h:panelGrid>  
         </h:form>
     </h:body>
