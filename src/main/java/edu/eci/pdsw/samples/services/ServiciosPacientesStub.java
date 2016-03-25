@@ -27,6 +27,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -75,7 +76,9 @@ public class ServiciosPacientesStub extends ServiciosPacientes{
             throw new ExcepcionServiciosPacientes("Paciente "+idPaciente+" no esta registrado");
         }
         else{
-            p.getConsultas().add(c);
+            Set<Consulta> consultas=p.getConsultas();
+            consultas.add(c);
+            p.setConsultas(consultas);;
         }
     }
     

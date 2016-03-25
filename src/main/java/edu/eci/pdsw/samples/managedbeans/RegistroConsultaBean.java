@@ -74,14 +74,15 @@ public class RegistroConsultaBean{
             sp.registrarNuevoPaciente(paciente1);
         }
         catch(ExcepcionServiciosPacientes e){
+            e.printStackTrace();
         }
     }
     
     public void agregarConsulta() throws ExcepcionServiciosPacientes{
         try{
-            sp.agregarConsultaAPaciente(pacienteConsulta.getId(), pacienteConsulta.getTipo_id(), new Consulta((java.sql.Date) fechaConsul, resumenConsul));
-        }catch (EnumConstantNotPresentException e){
-            
+            sp.agregarConsultaAPaciente(pacienteConsulta.getId(), pacienteConsulta.getTipo_id(), new Consulta(new java.sql.Date( fechaConsul.getTime()), resumenConsul));
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
     
@@ -96,6 +97,7 @@ public class RegistroConsultaBean{
 
     public List<Consulta> getConsultasPaciente() {
         consultasPaciente.clear();
+        //System.out.println("El paciente de consulta es: "+pacienteConsulta.toString());
         for (Consulta consulta : pacienteConsulta.getConsultas()) {
             consultasPaciente.add(consulta);
         }

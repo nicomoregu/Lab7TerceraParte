@@ -28,7 +28,7 @@ import java.util.List;
 public abstract class ServiciosPacientes{
     
     
-    private static ServiciosPacientes instance=new ServiciosPacientesPropio();
+    private static ServiciosPacientes instance=new ServiciosPacientesStub();
     
     
     protected ServiciosPacientes(){        
